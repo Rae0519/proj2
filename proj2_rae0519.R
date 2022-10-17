@@ -222,7 +222,7 @@ dloop <- function(n, nreps = 10000){
     u <- sample(1:(2*n), 2*n)
     #k <-  sample(1:(2*n), 2*n)
     for (k in 1:(2*n)){
-      sucess <- rep(0, 2*n)
+      success <- rep(0, 2*n)
       card = u[k]
       for(length_loop in 2:(2*n+1)){
         if (card == k){
@@ -232,7 +232,7 @@ dloop <- function(n, nreps = 10000){
         card = u[card]
       } 
     }
-    d_prob <- d_prob + sucess
+    d_prob <- d_prob + success
   }
   d_prob
 }
