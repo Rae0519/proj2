@@ -37,16 +37,145 @@ Pone <- function(n,k,strategy,nreps = 10000){
 
 
 
+
+Pone <- function(n,k,strategy,nreps = 10000){
+  box <- 1:(2*n)
+  count <- 10000
+  # strategy 1
+  if (strategy == 1){
+    for (i in 1:nreps) {
+      box <- sample(box,2*n)
+      num <- k
+      t <- n
+      while (t > 0){
+        num <- box[num]
+        if (num == k){break}
+        t = t - 1
+      }
+      if (t == 0){
+        count = count - 1
+      }
+    }
+  }
+  
+  # strategy 2
+  if (strategy == 2){
+    for (i in 1:nreps) {
+      box <- sample(box,2*n)
+      num <- sample(box,1)
+      t <- n
+      while (t > 0){
+        num = box[num]
+        if (num == k){break}
+        t = t - 1
+      }
+      if (t == 0){
+        count = count - 1
+      }
+    }
+  }
+  # strategy 3
+  if (strategy == 3){
+    for (i in 1:nreps) {
+      box <- sample(box,n)
+      if (k %in% box[] == T){
+        break
+      }
+      else {
+        count = count -1
+      }
+    }
+  }
+  
+  prob <- count/nreps
+  return(prob)
+}
+
+p = Pone(50,34,1,1)
+
+
+Pone <- function(n,k,strategy,nreps = 10000){
+  A <- 1: (2*n)
+  escape = 0
+  if (strategy == 1){
+    j = 1
+    for (j in 1 : nreps){
+      prisoner <- sample(A, 2*n, replace = FALSE)
+      cardinbox <- sample(A, 2*n, replace = FALSE)
+      i = 1
+      numforpk <- prisoner[k]
+      m <- cardinbox[numforpk]
+      for ( i in 1 : n ){
+        if (m == prisoner[k]){
+          escape = escape + 1 
+          break
+        }
+        else { if ( i < n ){
+          m = cardinbox[m]
+          i = i + 1
+        }
+          else{
+            escape = escape
+            break
+          }
+        } 
+      }
+      j = j + 1
+    }
+  }
+  if (strategy == 2){
+    j = 1
+    for (j in 1 : nreps){
+      prisoner <- sample(A, 2*n, replace = FALSE)
+      cardinbox <- sample(A, 2*n, replace = FALSE)
+      i = 1
+      k_1 <- sample(A, 1, replace = FALSE)
+      m <- cardinbox[k_1]
+      for ( i in 1:n ){
+        if (m == prisoner[k]){
+          escape = escape + 1 
+          break
+        }
+        else { if ( i < n){
+          m = cardinbox[m]
+          i = i + 1
+        }
+          else{
+            escape = escape
+            break
+          }
+        } 
+      }
+      j = j + 1
+    }
+    
+  }
+  if (strategy == 3){
+    j = 0
+    for (j in 1 : nreps){
+      prisoner <- sample(A, 2*n, replace = FALSE)
+      cardinbox <- sample(A, 2*n, replace = FALSE)
+      box_open <- sample(A, n, replace = FALSE)
+      if (prisoner[k] %in% cardinbox[box_open]){
+        escape = escape + 1
+      }
+      else {escape = escape}
+    }
+    j = j + 1
+  }
+  escape / nreps
+}
+
 Pall <-  function(n, strategy, nreps = 10000){
   Pall_prob = 0
   for (i in 1:nreps){
+    success = rep(0, 2*n)
     for (k in 1:(2*n)){
-      success = 0
       if (Pone(n, k, strategy, 1) > 0){
-        success = 1
-      }  
+        success[k] = 1
+      }
     }
-    if (success == 1){
+    if (sum(success) == 2*n){
       Pall_prob = Pall_prob + 1
     }
   }
@@ -54,9 +183,16 @@ Pall <-  function(n, strategy, nreps = 10000){
 }
 
 
+
+
+
+
+
 Pall(5,3)
 
-Pall(50,1)
+Pall(100,1)
+Pall(100, 3)
+
 
 
 dloop <- function(n, nreps = 10000){
