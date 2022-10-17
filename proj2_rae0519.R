@@ -166,13 +166,36 @@ Pone <- function(n,k,strategy,nreps = 10000){
   escape / nreps
 }
 
-Pall <-  function(n, strategy, nreps = 10000){
+# Pall <-  function(n, strategy, nreps = 10000){
+#   Pall_prob = 0
+#   for (i in 1:nreps){
+#     success <-  rep(0, 2*n)
+#     for (k in 1:(2*n)){
+#       if (Pone(n, k, strategy, 1) > 0){
+#         success[k] = 1
+#         break
+#       }
+#     }
+#     if (sum(success) == 2*n){
+#       Pall_prob = Pall_prob + 1
+#     }
+#   }
+#   Pall_prob/nreps
+# }
+
+Pall <-  function(n, nreps = 10000){
   Pall_prob = 0
   for (i in 1:nreps){
-    success = rep(0, 2*n)
+    success <-  rep(0, 2*n)
+    box <-  sample(1:(2*n),2*n)
     for (k in 1:(2*n)){
-      if (Pone(n, k, strategy, 1) > 0){
-        success[k] = 1
+      card = box[k]
+      for(time in 1:(n-1)){
+        card = box[card]
+        if ( card == k){
+          success[k] = 1
+          break
+        }
       }
     }
     if (sum(success) == 2*n){
@@ -186,12 +209,10 @@ Pall <-  function(n, strategy, nreps = 10000){
 
 
 
-
-
 Pall(5,3)
 
 Pall(100,1)
-Pall(100, 3)
+Pall(100)
 
 
 
@@ -199,19 +220,21 @@ dloop <- function(n, nreps = 10000){
   d_prob <- rep(0, 2*n)
   for (m in 1:nreps){
     u <- sample(1:(2*n), 2*n)
-    k <-  sample(1:(2*n), 2*n)
-    for (i in 1:(2*n)){
-      card = u[k[i]]
-      for(length_loop in 2:(2*n)){
-        if (card == k[i]){
-          d_prob[length_loop-1] <- d_prob[length_loop-1] + 1
+    #k <-  sample(1:(2*n), 2*n)
+    for (k in 1:(2*n)){
+      sucess <- rep(0, 2*n)
+      card = u[k]
+      for(length_loop in 2:(2*n+1)){
+        if (card == k){
+          success[length_loop-1] = 1
           break
         }
         card = u[card]
       } 
     }
+    d_prob <- d_prob + sucess
   }
-  d_prob/sum(d_prob)
+  d_prob
 }
 
 
@@ -238,21 +261,21 @@ sum(dloop_probability[1:50])
 
 
 
-# n = 50
-# d_prob <- rep(0, 2*n)
-#   u <- sample(1:(2*n), 2*n)
-#   for (k in 1:(2*n)){
-#     card = u[k]
-#     for(length_loop in 2:(2*n)){
-#       if (card == k){
-#         d_prob[length_loop-1] <- d_prob[length_loop-1] + 1
-#         break
-#       }
-#       card = u[card]
-#     }
-#   }
-# 
-# d_prob
+n = 50
+d_prob <- rep(0, 2*n)
+  u <- sample(1:(2*n), 2*n)
+  for (k in 1:(2*n)){
+    card = u[k]
+    for(length_loop in 2:(2*n)){
+      if (card == k){
+        d_prob[length_loop-1] <- d_prob[length_loop-1] + 1
+        break
+      }
+      card = u[card]
+    }
+  }
+
+d_prob
 
 
 
