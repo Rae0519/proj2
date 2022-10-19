@@ -6,27 +6,29 @@ success <- function(n,k, p, strategy) {
   }
   count = 0
   escape = rep(0, p)
-  card = sample(1:(2 * n))
+  box = sample(1:(2 * n))
   if (strategy == 1) {
     for (i in 1:p) {
-      boxes = 0
-      box_start = prisoner[i]
-      while (boxes < n && !escape[i]) {
-        boxes = boxes + 1
-        escape[i] = card[box_start] == prisoner[i]
-        box_start = card[box_start]
+      card = box[prisoner[i]]
+      for (time in 1:n){
+        if (card == prisoner[i]){
+          escape[i] = 1
+        break
+        }
+        card = box[card]
       }
     }
   }
   
   else if (strategy == 2) {
     for (i in 1:p) {
-      boxes = 0
-      box_start = sample(1:(2*n),1)
-      while (boxes < n && !escape[i]) {
-        boxes = boxes + 1
-        escape[i] = card[box_start] == k_1[i]
-        box_start = card[box_start]
+      card = sample(1:(2*n), 1)
+      for (time in 1:n){
+        if (card == prisoner[i]){
+          escape[i] = 1
+          break
+        }
+        card = box[card]
       }
       
     }
@@ -66,4 +68,5 @@ Pall <- function(n,strategy,nreps = 10000){
 
 # Pall(5,3)
 
-# Pall(50,1)
+Pall(50,2)
+Pone(50, 34, 2)
