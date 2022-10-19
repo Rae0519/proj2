@@ -26,7 +26,7 @@ success <- function(n,k, p, strategy) {
       for (time in 1:n){
         if (card == prisoner[i]){
           escape[i] = 1
-          break
+        break
         }
         card = box[card]
       }
@@ -36,7 +36,7 @@ success <- function(n,k, p, strategy) {
   
   else if (strategy == 3) {
     for (i in 1:p) {
-      escape[i] = i %in% sample(card, n)
+      escape[i] = i %in% sample(box, n)
     }
     
   }
@@ -68,5 +68,5 @@ Pall <- function(n,strategy,nreps = 10000){
 
 # Pall(5,3)
 
-Pall(50,2)
-Pone(50, 34, 2)
+Pall(50,3)
+Pone(50, 21, 3)
