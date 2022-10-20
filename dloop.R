@@ -61,7 +61,7 @@ dloop_probability <- dloop(50)
 
 # one possible result: 0.3111. 
 # It is similar to the result of joint success probabilities of strategy 1.
-# It makes sense. When all prisoners all goes free under strategy 1, it means no prisoner opens more than n boxes (here n = 50).
+# It makes sense. When all prisoners all go free under strategy 1, it means no prisoner opens more than n boxes (here n = 50).
 # It is the same question as the probability that there is no loop > 50.
 
 
