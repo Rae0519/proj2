@@ -94,11 +94,19 @@ Pall <- function(n, strategy, nreps = 10000) {
   all_success / nreps  # calculate the probability of success
 }
 
-
-# Pall(5,3)
-
+Pone(5, 63, 1)
+Pone(5, 63, 2)
+Pone(5, 63, 3)
+Pone(50, 63, 1)
+Pone(50, 63, 2)
+Pone(50, 63, 3)
+Pall(5,1)
+Pall(5,2)
+Pall(5,3)
 Pall(50, 1)
-Pone(50, 21, 1)
+Pall(50, 2)
+Pall(50, 3)
+
 
 
 
