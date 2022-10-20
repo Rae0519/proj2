@@ -24,14 +24,13 @@ Finally, calculate the probability for 2n loops.(count numbers of each loop/nrep
 
 dloop <- function(n, nreps = 10000){
   d_prob <- rep(0, 2*n)                     # 'd_prob' is a 2n-vector with value 0. 
-  # It is to count the occurrence of each loop.
+                                            # It is to count the occurrence of each loop.
   
   for (m in 1:nreps){                       # loop through 'nreps' times of shuffling
     u <- sample(1:(2*n))                    # randomly choose 2n cards in [1, 2n] without repeating.
     k <- sample(1:(2*n))                    # randomly choose 2n prisoners in [1, 2n] without repeating.
     success <- rep(0, 2*n)                  # 'success' is a 2n-vector with value 0 for counting the occurrence of each loop in one random shuffling.
-    
-    
+        
     for (i in 1:(2*n)){                     # loop through 2n prisoner in one shuffling 
       card = u[k[i]]                        # choose the card in the box of the ith prisoner number k[i].
       
