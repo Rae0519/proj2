@@ -22,17 +22,17 @@ Overview:
   the output will be 0 or 1."
 
 success <- function(n, k, p, strategy) {  
-  prisoner = sample(1:(2 * n))  # random sample of prisoner numbers, create the sequence to enter the room
+  prisoner = sample(1:(2 * n))  # random sample of prisoner numbers with no repeat, create the sequence to enter the room
   if (p == 1) {
     prisoner[1] = k  # if only 1 prisoner enter, then the first prisoner number is 'k'
   }
   found = rep(0, p)  # create a 0 vector in length 'p'
-  box = sample(1:(2 * n))  # random sample of boxes number
+  box = sample(1:(2 * n))  # random sample of boxes number with no repeat, then cards are randomly placed one in each box.
   
   # strategy 1
   if (strategy == 1) {
     for (i in 1:p) {   # the loop will stop until 'p' prisoners found they cards
-      card = box[prisoner[i]]  # card number is in the box of prisoner[i]
+      card = box[prisoner[i]]  # find the card number in the box of prisoner[i]
       for (time in 1:n) {      # open at most n boxes
         if (card == prisoner[i]) {  # card number is equal to prisoner[i]'s number
           found[i] = 1     # successfully find the card
@@ -46,7 +46,7 @@ success <- function(n, k, p, strategy) {
   # strategy 2 
   else if (strategy == 2) {  # the structure is similar
     for (i in 1:p) {
-      card = sample(1:(2 * n), 1)  # box number is randomly selected so the card number is random too
+      card = sample(1:(2 * n), 1)  # decide the first open box randomly, so the card number is random too
       for (time in 1:n) {
         if (card == prisoner[i]) {
           found[i] = 1
@@ -59,8 +59,8 @@ success <- function(n, k, p, strategy) {
   
   # strategy 3
   else if (strategy == 3) {
-    for (i in 1:p) {
-      found[i] = i %in% sample(box, n)  # find out whether card number 'i' is in randomly picked n boxes
+    for (i in 1:p) {                    
+      found[i] = i %in% sample(box, n)  # find out whether card number 'i' is in randomly picked n boxes for prisoner 'i'
     }
     
   }
