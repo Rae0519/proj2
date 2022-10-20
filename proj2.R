@@ -145,8 +145,8 @@ Pone(5, 3, 3)                # one possible result: 0.5033
 
 # individual probability (n = 50, k = 63, nreps = 10000)
 Pone(50, 63, 1)              # one possible result: 0.5078          
-Pone(50, 63, 2)              # one possible result:   
-Pone(50, 63, 3)              # one possible result:
+Pone(50, 63, 2)              # one possible result: 0.38  
+Pone(50, 63, 3)              # one possible result: 0.4996
 
 
 # joint probability (n = 5, nreps = 10000)
