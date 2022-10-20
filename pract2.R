@@ -17,7 +17,9 @@ Overview:
 
 "
 
-" success() is to decide whether the prisoners can go free
+" success() is to decide whether the prisoners can go free, using loop to traverse 'p' prisoners according to 3 strategies.
+  In this function we can define how many prisoners can succeed finding their cards.
+  The success can be determined by whether the card number = prisoner's number. And we realise the process of findng card by 'for' loop less than 'n' times.
   n, k(the prisoner’s number), p(the number of prisoners who enter the room), strategy (1, 2 or 3)
   the output will be 0 or 1."
 
