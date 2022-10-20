@@ -39,7 +39,7 @@ There are three possible strategies to be attempted:
 
 
 "
-Fisrtly we need to find the probability of each prisoner to find their card and the probability of all prisoners getting 
+Firstly we need to find the probability of each prisoner to find their card and the probability of all prisoners getting 
 free under each strategy.
 "
 
